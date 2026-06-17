@@ -102,6 +102,36 @@ export function utxoTxDirection(tx, address) {
 }
 
 /**
+ * Validate a wallet address against a known addressType.
+ * Returns true for tokens (addressType null) — they have no single format.
+ * @param {string} address
+ * @param {string|null} addressType
+ * @returns {boolean}
+ */
+export function validateAddress(address, addressType) {
+        if (!addressType) return true;
+        const a = (address || '').trim();
+        switch (addressType) {
+                case 'evm':       return /^0x[0-9a-fA-F]{40}$/.test(a);
+                case 'utxo':      return /^(bc1|ltc1|[13LMDqpzZt])[a-zA-Z0-9]{25,90}$/.test(a);
+                case 'xrp':       return /^r[a-zA-Z0-9]{24,33}$/.test(a);
+                case 'xlm':       return /^G[A-Z2-7]{55}$/.test(a);
+                case 'tron':      return /^T[a-zA-Z0-9]{33}$/.test(a) && a.length === 34;
+                case 'solana':    return /^[1-9A-HJ-NP-Za-km-z]{32,44}$/.test(a);
+                case 'ada':       return a.toLowerCase().startsWith('addr1');
+                case 'tezos':     return /^(tz1|tz2|tz3|KT1)[a-zA-Z0-9]{33}$/.test(a);
+                case 'algorand':  return /^[A-Z2-7]{58}$/.test(a);
+                case 'near':      return /^[a-z0-9_-]{2,64}(\.near)?$/.test(a) || /^[0-9a-f]{64}$/.test(a);
+                case 'hbar':      return /^0\.0\.\d+$/.test(a);
+                case 'sui':       return /^0x[0-9a-fA-F]{64}$/.test(a);
+                case 'aptos':     return /^0x[0-9a-fA-F]{64}$/.test(a);
+                case 'substrate': return /^[1-9A-HJ-NP-Za-km-z]{46,48}$/.test(a);
+                case 'sei':       return /^sei[a-z0-9]{39}$/.test(a);
+                default:          return true;
+        }
+}
+
+/**
  * Sum the output value sent to (or from) a specific address in a UTXO tx.
  * Returns the raw satoshi/unit integer as a string.
  * @param {object} tx

@@ -136,10 +136,7 @@ class MyBalCommand extends Command {
 
                 if (!chainCfg) {
                         return ctx.reply({
-                                components: [this._errorContainer(
-                                        'Unknown Coin',
-                                        `\`${chainInput}\` is not a recognised coin.`,
-                                )],
+                                components: [this._msgContainer(`**\`${chainInput}\` is not a recognised coin.**`)],
                                 flags: MessageFlags.IsComponentsV2,
                         });
                 }
@@ -148,10 +145,7 @@ class MyBalCommand extends Command {
 
                 if (!address) {
                         return ctx.reply({
-                                components: [this._errorContainer(
-                                        'No Address Saved',
-                                        `You haven't saved a **${chainCfg.name}** address yet.\nUse </setaddy:${ctx.client.application.commands.cache.find(c => c.name === 'setaddy')?.id ?? '0'}> to save one.`,
-                                )],
+                                components: [this._msgContainer(`**No \`${chainCfg.symbol}\` address saved. Use \`/setaddy\`.**`)],
                                 flags: MessageFlags.IsComponentsV2,
                         });
                 }
@@ -160,20 +154,14 @@ class MyBalCommand extends Command {
 
                 if (!detectedCfg) {
                         return ctx.reply({
-                                components: [this._errorContainer(
-                                        'Chain Detection Failed',
-                                        `Could not detect the chain for your saved address.\n\`\`\`${address}\`\`\``,
-                                )],
+                                components: [this._msgContainer(`**That doesn't look like a valid \`${chainCfg.symbol}\` address.**`)],
                                 flags: MessageFlags.IsComponentsV2,
                         });
                 }
 
                 if (!detectedCfg.tatumNetwork) {
                         return ctx.reply({
-                                components: [this._errorContainer(
-                                        'Unsupported Chain',
-                                        `**${chainCfg.name}** (\`${chainCfg.symbol}\`) is a token — balance lookups aren't supported yet.\nYour saved address: \`\`\`${address}\`\`\``,
-                                )],
+                                components: [this._msgContainer(`**\`${chainCfg.symbol}\` is a token — balance lookups aren't supported yet.**`)],
                                 flags: MessageFlags.IsComponentsV2,
                         });
                 }
@@ -186,10 +174,7 @@ class MyBalCommand extends Command {
 
                 if (balSettled.status === 'rejected') {
                         return ctx.reply({
-                                components: [this._errorContainer(
-                                        'Lookup Failed',
-                                        `Could not fetch balance for your saved address.\n\`${balSettled.reason?.message || 'Unknown error'}\``,
-                                )],
+                                components: [this._msgContainer(`**Could not fetch balance for your saved \`${chainCfg.symbol}\` address.**`)],
                                 flags: MessageFlags.IsComponentsV2,
                         });
                 }
@@ -278,14 +263,10 @@ class MyBalCommand extends Command {
                 });
         }
 
-        _errorContainer(title, description) {
+        _msgContainer(text) {
                 return new ContainerBuilder()
                         .setAccentColor(0xffffff)
-                        .addTextDisplayComponents(new TextDisplayBuilder().setContent(`## ❌ ${title}`))
-                        .addSeparatorComponents(
-                                new SeparatorBuilder().setSpacing(SeparatorSpacingSize.Small).setDivider(true),
-                        )
-                        .addTextDisplayComponents(new TextDisplayBuilder().setContent(description));
+                        .addTextDisplayComponents(new TextDisplayBuilder().setContent(text));
         }
 }
 

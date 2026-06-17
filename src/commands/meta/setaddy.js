@@ -2,12 +2,10 @@ import { Command } from '#command';
 import {
         ContainerBuilder,
         TextDisplayBuilder,
-        SeparatorBuilder,
-        SeparatorSpacingSize,
         MessageFlags,
         ApplicationCommandOptionType,
 } from 'discord.js';
-import { resolveChain, CHAINS } from '#utils';
+import { resolveChain, CHAINS, validateAddress } from '#utils';
 import { db } from '#dbManager';
 
 const FEATURED = ['btc', 'eth', 'ltc', 'sol', 'trx', 'xrp'];
@@ -71,10 +69,14 @@ class SetAddyCommand extends Command {
                 const chainCfg = resolveChain(chainInput);
                 if (!chainCfg) {
                         return ctx.reply({
-                                components: [this._errorContainer(
-                                        'Unknown Chain',
-                                        `\`${chainInput}\` is not a recognised chain.`,
-                                )],
+                                components: [this._msgContainer(`**\`${chainInput}\` is not a recognised coin.**`)],
+                                flags: MessageFlags.IsComponentsV2,
+                        });
+                }
+
+                if (!validateAddress(address, chainCfg.addressType)) {
+                        return ctx.reply({
+                                components: [this._msgContainer(`**That doesn't look like a valid \`${chainCfg.symbol}\` address.**`)],
                                 flags: MessageFlags.IsComponentsV2,
                         });
                 }
@@ -96,14 +98,10 @@ class SetAddyCommand extends Command {
                 });
         }
 
-        _errorContainer(title, description) {
+        _msgContainer(text) {
                 return new ContainerBuilder()
-                        .setAccentColor(0xed4245)
-                        .addTextDisplayComponents(new TextDisplayBuilder().setContent(`## ❌ ${title}`))
-                        .addSeparatorComponents(
-                                new SeparatorBuilder().setSpacing(SeparatorSpacingSize.Small).setDivider(true),
-                        )
-                        .addTextDisplayComponents(new TextDisplayBuilder().setContent(description));
+                        .setAccentColor(0xffffff)
+                        .addTextDisplayComponents(new TextDisplayBuilder().setContent(text));
         }
 }
 

@@ -19,6 +19,7 @@ import {
         utxoTxDirection,
         utxoTxAmount,
         getPrice,
+        validateAddress,
 } from '#utils';
 import { emoji } from '#emoji';
 
@@ -117,22 +118,25 @@ class BalCommand extends Command {
 
                 if (!chainCfg) {
                         return ctx.reply({
-                                components: [this._errorContainer(
-                                        'Unknown Chain',
+                                components: [this._msgContainer(
                                         chainInput
-                                                ? `\`${chainInput}\` is not a recognised chain. Try: \`eth\`, \`btc\`, \`sol\`, \`trx\`, etc.`
-                                                : `Could not detect the chain for \`${address}\`.\nSpecify it manually with the \`chain\` option.`,
+                                                ? `**\`${chainInput}\` is not a recognised chain.**`
+                                                : `**Could not detect the chain for that address.**`,
                                 )],
+                                flags: MessageFlags.IsComponentsV2,
+                        });
+                }
+
+                if (chainInput && !validateAddress(address, chainCfg.addressType)) {
+                        return ctx.reply({
+                                components: [this._msgContainer(`**That doesn't look like a valid \`${chainCfg.symbol}\` address.**`)],
                                 flags: MessageFlags.IsComponentsV2,
                         });
                 }
 
                 if (!chainCfg.tatumNetwork) {
                         return ctx.reply({
-                                components: [this._errorContainer(
-                                        'Unsupported Chain',
-                                        `**${chainCfg.name}** (\`${chainCfg.symbol}\`) is not yet supported for balance lookups.`,
-                                )],
+                                components: [this._msgContainer(`**\`${chainCfg.symbol}\` is a token — balance lookups aren't supported yet.**`)],
                                 flags: MessageFlags.IsComponentsV2,
                         });
                 }
@@ -145,10 +149,7 @@ class BalCommand extends Command {
 
                 if (balSettled.status === 'rejected') {
                         return ctx.reply({
-                                components: [this._errorContainer(
-                                        'Lookup Failed',
-                                        `Could not fetch balance for that address.\n\`${balSettled.reason?.message || 'Unknown error'}\``,
-                                )],
+                                components: [this._msgContainer(`**Could not fetch balance for that address.**`)],
                                 flags: MessageFlags.IsComponentsV2,
                         });
                 }
@@ -236,14 +237,10 @@ class BalCommand extends Command {
                 });
         }
 
-        _errorContainer(title, description) {
+        _msgContainer(text) {
                 return new ContainerBuilder()
-                        .setAccentColor(0xed4245)
-                        .addTextDisplayComponents(new TextDisplayBuilder().setContent(`## ❌ ${title}`))
-                        .addSeparatorComponents(
-                                new SeparatorBuilder().setSpacing(SeparatorSpacingSize.Small).setDivider(true),
-                        )
-                        .addTextDisplayComponents(new TextDisplayBuilder().setContent(description));
+                        .setAccentColor(0xffffff)
+                        .addTextDisplayComponents(new TextDisplayBuilder().setContent(text));
         }
 }
 
