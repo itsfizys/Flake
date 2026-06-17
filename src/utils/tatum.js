@@ -161,6 +161,126 @@ async function _hbarBalance(address) {
         return { balance, raw: data };
 }
 
+// ─── Transaction by hash ────────────────────────────────────────────────────
+
+async function _evmTransaction(network, hash) {
+        const tx = await fetchTatum(`/${network}/transaction/${hash}`);
+        const gasUsed  = BigInt(tx.gasUsed  || tx.gas || 0);
+        const gasPrice = BigInt(tx.gasPrice || tx.effectiveGasPrice || 0);
+        const feeWei   = (gasUsed * gasPrice).toString();
+        let status = 'Pending';
+        if (tx.status === '0x1' || tx.status === true  || tx.status === 1) status = 'Confirmed';
+        if (tx.status === '0x0' || tx.status === false || tx.status === 0) status = 'Failed';
+        return {
+                hash:      tx.hash || tx.transactionHash || hash,
+                from:      tx.from  || null,
+                to:        tx.to    || null,
+                amount:    tx.value || '0',
+                fee:       feeWei,
+                status,
+                timestamp: tx.timestamp ? Number(tx.timestamp) : null,
+                type:      'evm',
+        };
+}
+
+async function _utxoTransaction(network, hash) {
+        const tx = await fetchTatum(`/${network}/transaction/${hash}`);
+        const from = tx.inputs?.[0]?.coin?.address ?? null;
+        const to   = tx.outputs?.[0]?.address ?? null;
+        const totalOut = (tx.outputs || []).reduce((s, o) => s + parseFloat(o.value || 0), 0);
+        const status   = tx.blockNumber != null ? 'Confirmed' : 'Pending';
+        return {
+                hash:      tx.hash || hash,
+                from,
+                to,
+                amount:    totalOut.toString(),
+                fee:       tx.fee ?? null,
+                status,
+                timestamp: tx.time ?? null,
+                type:      'utxo',
+        };
+}
+
+async function _xrpTransaction(hash) {
+        const tx = await fetchTatum(`/xrp/transaction/${hash}`);
+        const result = tx.meta?.TransactionResult ?? '';
+        const status = result === 'tesSUCCESS' ? 'Confirmed' : result ? 'Failed' : 'Pending';
+        const tsRaw  = tx.date != null ? tx.date + 946684800 : null;
+        return {
+                hash:      tx.hash || hash,
+                from:      tx.Account      || null,
+                to:        tx.Destination  || null,
+                amount:    tx.Amount != null ? (parseInt(tx.Amount) / 1e6).toString() : '0',
+                fee:       tx.Fee    != null ? (parseInt(tx.Fee)    / 1e6).toString() : null,
+                status,
+                timestamp: tsRaw,
+                type:      'xrp',
+        };
+}
+
+async function _tronTransaction(hash) {
+        const tx = await fetchTatum(`/tron/transaction/${hash}`);
+        const contract  = tx.raw_data?.contract?.[0]?.parameter?.value ?? {};
+        const ret       = tx.ret?.[0]?.contractRet ?? '';
+        const status    = ret === 'SUCCESS' ? 'Confirmed' : ret ? 'Failed' : 'Pending';
+        const tsMs      = tx.raw_data?.timestamp ?? null;
+        return {
+                hash:      tx.txID || hash,
+                from:      contract.owner_address || null,
+                to:        contract.to_address    || null,
+                amount:    contract.amount != null ? (contract.amount / 1e6).toString() : '0',
+                fee:       null,
+                status,
+                timestamp: tsMs != null ? Math.floor(tsMs / 1000) : null,
+                type:      'tron',
+        };
+}
+
+async function _solanaTransaction(hash) {
+        const tx = await fetchTatum(`/solana/transaction/${hash}`);
+        const keys  = tx.transaction?.message?.accountKeys ?? [];
+        const meta  = tx.meta ?? {};
+        const fee   = meta.fee != null ? (meta.fee / 1e9).toString() : null;
+        const status = meta.err === null ? 'Confirmed' : meta.err != null ? 'Failed' : 'Pending';
+        // Derive amount from balance delta of first non-fee-payer account
+        let amount = '0';
+        if (meta.preBalances && meta.postBalances && meta.preBalances.length > 1) {
+                const delta = Math.abs(meta.postBalances[1] - meta.preBalances[1]);
+                amount = (delta / 1e9).toString();
+        }
+        return {
+                hash:      tx.transaction?.signatures?.[0] ?? hash,
+                from:      keys[0] ?? null,
+                to:        keys[1] ?? null,
+                amount,
+                fee,
+                status,
+                timestamp: tx.blockTime ?? null,
+                type:      'solana',
+        };
+}
+
+/**
+ * Fetch a single transaction by hash for a given chain.
+ * Returns a normalised object: { hash, from, to, amount, fee, status, timestamp, type }
+ * - amount / fee are decimal strings in the chain's native unit
+ * - timestamp is unix seconds (or null)
+ */
+export async function getTransaction(chainCfg, hash) {
+        if (!chainCfg.tatumNetwork) throw new Error(`${chainCfg.symbol} not supported.`);
+        const n = chainCfg.tatumNetwork;
+        switch (chainCfg.addressType) {
+                case 'evm':    return _evmTransaction(n, hash);
+                case 'utxo':   return _utxoTransaction(n, hash);
+                case 'xrp':    return _xrpTransaction(hash);
+                case 'tron':   return _tronTransaction(hash);
+                case 'solana': return _solanaTransaction(hash);
+                default: throw new Error(`Transaction lookup not supported for ${chainCfg.symbol}`);
+        }
+}
+
+// ─── Balance ─────────────────────────────────────────────────────────────────
+
 /**
  * Fetch the native balance for a given chain + address.
  * @param {{ tatumNetwork: string, addressType: string }} chainCfg
