@@ -214,7 +214,7 @@ class BalCommand extends Command {
 
                         container.addTextDisplayComponents(
                                 new TextDisplayBuilder().setContent(
-                                        `### Recent Activity\n${txLines}\n-# Shows recent ${txs.length}`,
+                                        `### Recent Activity\n${txLines}`,
                                 ),
                         );
                 }
