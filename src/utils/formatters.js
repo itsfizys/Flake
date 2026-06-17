@@ -114,11 +114,11 @@ export function utxoTxAmount(tx, address, direction) {
         if (direction === 'in') {
                 const total = (tx.outputs ?? [])
                         .filter(o => o.address?.toLowerCase() === addr)
-                        .reduce((s, o) => s + BigInt(o.value ?? 0), 0n);
+                        .reduce((s, o) => s + parseFloat(o.value ?? 0), 0);
                 return total.toString();
         }
         const total = (tx.inputs ?? [])
                 .filter(i => i.coin?.address?.toLowerCase() === addr)
-                .reduce((s, i) => s + BigInt(i.coin?.value ?? 0), 0n);
+                .reduce((s, i) => s + parseFloat(i.coin?.value ?? 0), 0);
         return total.toString();
 }

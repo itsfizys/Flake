@@ -73,8 +73,7 @@ function getTxValueUSD(tx, address, chainCfg, price) {
                 }
                 if (tx.type === 'utxo') {
                         const dir = utxoTxDirection(tx, address);
-                        const raw = utxoTxAmount(tx, address, dir === 'out' ? 'out' : 'in');
-                        const amount = parseFloat(formatRawValue(raw, chainCfg.decimals));
+                        const amount = parseFloat(utxoTxAmount(tx, address, dir === 'out' ? 'out' : 'in'));
                         return amount * price;
                 }
         } catch {}
