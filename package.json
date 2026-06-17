@@ -1,0 +1,49 @@
+{
+  "name": "discord-bot-handler",
+  "version": "1.1.0",
+  "description": "A versatile Discord.js bot handler",
+  "type": "module",
+  "scripts": {
+    "start": "node src/bot.js",
+    "format": "prettier --write \"src/**/*.js\""
+  },
+  "imports": {
+    "#commands/*": "./src/commands/*.js",
+    "#command": "./src/structures/classes/command.js",
+    "#context": "./src/structures/classes/context.js",
+    "#config": "./src/config/config.js",
+    "#emoji": "./src/config/emoji.js",
+    "#dbManager": "./src/database/manager.js",
+    "#structures/*": "./src/structures/*.js",
+    "#database/*": "./src/database/*.js",
+    "#config/*": "./src/config/*.js",
+    "#utils": "./src/utils/index.js",
+    "#events/*": "./src/events/*.js",
+    "#handlers/*": "./src/structures/handlers/*.js",
+    "#classes/*": "./src/structures/classes/*.js",
+    "#db/*": "./src/database/*.js",
+    "#dbRepo/*": "./src/database/repositories/*.js",
+    "#dbSchema/*": "./src/database/schema/*.js",
+    "#dbServices/*": "./src/database/services/*.js",
+    "#src/*": "./src/*.js"
+  },
+  "keywords": [
+    "discord",
+    "bot",
+    "discord.js",
+    "sharding",
+    "modular"
+  ],
+  "author": "Bre4d777",
+  "license": "MIT",
+  "dependencies": {
+    "discord.js": "^14.25.1",
+    "dotenv": "^17.2.4",
+    "fs-extra": "^11.3.3",
+    "mongoose": "^8.0.0",
+    "prettier": "^3.8.1"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}

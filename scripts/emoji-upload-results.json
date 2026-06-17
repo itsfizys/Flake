@@ -1,0 +1,1017 @@
+{
+  "success": [
+    {
+      "name": "Re Protocol reUSD",
+      "symbol": "reusd",
+      "emojiName": "coin_reusd",
+      "id": "1516860795080671242"
+    },
+    {
+      "name": "dogwifhat",
+      "symbol": "wif",
+      "emojiName": "coin_wif",
+      "id": "1516860801405816993"
+    },
+    {
+      "name": "Trust Wallet",
+      "symbol": "twt",
+      "emojiName": "coin_twt",
+      "id": "1516860807663587409"
+    },
+    {
+      "name": "Raydium",
+      "symbol": "ray",
+      "emojiName": "coin_ray",
+      "id": "1516860814265417779"
+    },
+    {
+      "name": "MX",
+      "symbol": "mx",
+      "emojiName": "coin_mx",
+      "id": "1516860820619919600"
+    },
+    {
+      "name": "Billions Network",
+      "symbol": "bill",
+      "emojiName": "coin_bill",
+      "id": "1516860827045462096"
+    },
+    {
+      "name": "Railgun",
+      "symbol": "rail",
+      "emojiName": "coin_rail",
+      "id": "1516860833341112320"
+    },
+    {
+      "name": "Theta Network",
+      "symbol": "theta",
+      "emojiName": "coin_theta",
+      "id": "1516860839863259206"
+    },
+    {
+      "name": "NEO",
+      "symbol": "neo",
+      "emojiName": "coin_neo",
+      "id": "1516860846415024379"
+    },
+    {
+      "name": "Spiko US T-Bills Money Market Fund",
+      "symbol": "ustbl",
+      "emojiName": "coin_ustbl",
+      "id": "1516860853075316848"
+    }
+  ],
+  "failed": [],
+  "skipped": [
+    {
+      "name": "Bitcoin",
+      "symbol": "btc",
+      "emojiName": "coin_btc"
+    },
+    {
+      "name": "Ethereum",
+      "symbol": "eth",
+      "emojiName": "coin_eth"
+    },
+    {
+      "name": "Tether",
+      "symbol": "usdt",
+      "emojiName": "coin_usdt"
+    },
+    {
+      "name": "BNB",
+      "symbol": "bnb",
+      "emojiName": "coin_bnb"
+    },
+    {
+      "name": "XRP",
+      "symbol": "xrp",
+      "emojiName": "coin_xrp"
+    },
+    {
+      "name": "USDC",
+      "symbol": "usdc",
+      "emojiName": "coin_usdc"
+    },
+    {
+      "name": "Solana",
+      "symbol": "sol",
+      "emojiName": "coin_sol"
+    },
+    {
+      "name": "TRON",
+      "symbol": "trx",
+      "emojiName": "coin_trx"
+    },
+    {
+      "name": "Figure Heloc",
+      "symbol": "figr_heloc",
+      "emojiName": "coin_figr_heloc"
+    },
+    {
+      "name": "Hyperliquid",
+      "symbol": "hype",
+      "emojiName": "coin_hype"
+    },
+    {
+      "name": "Dogecoin",
+      "symbol": "doge",
+      "emojiName": "coin_doge"
+    },
+    {
+      "name": "USDS",
+      "symbol": "usds",
+      "emojiName": "coin_usds"
+    },
+    {
+      "name": "Rain",
+      "symbol": "rain",
+      "emojiName": "coin_rain"
+    },
+    {
+      "name": "LEO Token",
+      "symbol": "leo",
+      "emojiName": "coin_leo"
+    },
+    {
+      "name": "Zcash",
+      "symbol": "zec",
+      "emojiName": "coin_zec"
+    },
+    {
+      "name": "Stellar",
+      "symbol": "xlm",
+      "emojiName": "coin_xlm"
+    },
+    {
+      "name": "WhiteBIT Coin",
+      "symbol": "wbt",
+      "emojiName": "coin_wbt"
+    },
+    {
+      "name": "Canton",
+      "symbol": "cc",
+      "emojiName": "coin_cc"
+    },
+    {
+      "name": "Cardano",
+      "symbol": "ada",
+      "emojiName": "coin_ada"
+    },
+    {
+      "name": "Monero",
+      "symbol": "xmr",
+      "emojiName": "coin_xmr"
+    },
+    {
+      "name": "Chainlink",
+      "symbol": "link",
+      "emojiName": "coin_link"
+    },
+    {
+      "name": "USD1",
+      "symbol": "usd1",
+      "emojiName": "coin_usd1"
+    },
+    {
+      "name": "Ethena USDe",
+      "symbol": "usde",
+      "emojiName": "coin_usde"
+    },
+    {
+      "name": "Gram (prev. Toncoin)",
+      "symbol": "gram",
+      "emojiName": "coin_gram"
+    },
+    {
+      "name": "Bitcoin Cash",
+      "symbol": "bch",
+      "emojiName": "coin_bch"
+    },
+    {
+      "name": "Dai",
+      "symbol": "dai",
+      "emojiName": "coin_dai"
+    },
+    {
+      "name": "LAB",
+      "symbol": "lab",
+      "emojiName": "coin_lab"
+    },
+    {
+      "name": "MemeCore",
+      "symbol": "m",
+      "emojiName": "coin_m"
+    },
+    {
+      "name": "Litecoin",
+      "symbol": "ltc",
+      "emojiName": "coin_ltc"
+    },
+    {
+      "name": "Hedera",
+      "symbol": "hbar",
+      "emojiName": "coin_hbar"
+    },
+    {
+      "name": "Sui",
+      "symbol": "sui",
+      "emojiName": "coin_sui"
+    },
+    {
+      "name": "Circle USYC",
+      "symbol": "usyc",
+      "emojiName": "coin_usyc"
+    },
+    {
+      "name": "NEAR Protocol",
+      "symbol": "near",
+      "emojiName": "coin_near"
+    },
+    {
+      "name": "Avalanche",
+      "symbol": "avax",
+      "emojiName": "coin_avax"
+    },
+    {
+      "name": "Shiba Inu",
+      "symbol": "shib",
+      "emojiName": "coin_shib"
+    },
+    {
+      "name": "Cronos",
+      "symbol": "cro",
+      "emojiName": "coin_cro"
+    },
+    {
+      "name": "Global Dollar",
+      "symbol": "usdg",
+      "emojiName": "coin_usdg"
+    },
+    {
+      "name": "PayPal USD",
+      "symbol": "pyusd",
+      "emojiName": "coin_pyusd"
+    },
+    {
+      "name": "Tether Gold",
+      "symbol": "xaut",
+      "emojiName": "coin_xaut"
+    },
+    {
+      "name": "Bittensor",
+      "symbol": "tao",
+      "emojiName": "coin_tao"
+    },
+    {
+      "name": "BlackRock USD Institutional Digital Liquidity Fund",
+      "symbol": "buidl",
+      "emojiName": "coin_buidl"
+    },
+    {
+      "name": "Worldcoin",
+      "symbol": "wld",
+      "emojiName": "coin_wld"
+    },
+    {
+      "name": "Ondo US Dollar Yield",
+      "symbol": "usdy",
+      "emojiName": "coin_usdy"
+    },
+    {
+      "name": "Uniswap",
+      "symbol": "uni",
+      "emojiName": "coin_uni"
+    },
+    {
+      "name": "Aster",
+      "symbol": "aster",
+      "emojiName": "coin_aster"
+    },
+    {
+      "name": "PAX Gold",
+      "symbol": "paxg",
+      "emojiName": "coin_paxg"
+    },
+    {
+      "name": "World Liberty Financial",
+      "symbol": "wlfi",
+      "emojiName": "coin_wlfi"
+    },
+    {
+      "name": "Ondo",
+      "symbol": "ondo",
+      "emojiName": "coin_ondo"
+    },
+    {
+      "name": "Mantle",
+      "symbol": "mnt",
+      "emojiName": "coin_mnt"
+    },
+    {
+      "name": "Polkadot",
+      "symbol": "dot",
+      "emojiName": "coin_dot"
+    },
+    {
+      "name": "Ripple USD",
+      "symbol": "rlusd",
+      "emojiName": "coin_rlusd"
+    },
+    {
+      "name": "OKB",
+      "symbol": "okb",
+      "emojiName": "coin_okb"
+    },
+    {
+      "name": "HTX DAO",
+      "symbol": "htx",
+      "emojiName": "coin_htx"
+    },
+    {
+      "name": "Falcon USD",
+      "symbol": "usdf",
+      "emojiName": "coin_usdf"
+    },
+    {
+      "name": "Pi Network",
+      "symbol": "pi",
+      "emojiName": "coin_pi"
+    },
+    {
+      "name": "USDD",
+      "symbol": "usdd",
+      "emojiName": "coin_usdd"
+    },
+    {
+      "name": "Sky",
+      "symbol": "sky",
+      "emojiName": "coin_sky"
+    },
+    {
+      "name": "Internet Computer",
+      "symbol": "icp",
+      "emojiName": "coin_icp"
+    },
+    {
+      "name": "BFUSD",
+      "symbol": "bfusd",
+      "emojiName": "coin_bfusd"
+    },
+    {
+      "name": "Morpho",
+      "symbol": "morpho",
+      "emojiName": "coin_morpho"
+    },
+    {
+      "name": "Bitget Token",
+      "symbol": "bgb",
+      "emojiName": "coin_bgb"
+    },
+    {
+      "name": "Pepe",
+      "symbol": "pepe",
+      "emojiName": "coin_pepe"
+    },
+    {
+      "name": "Aave",
+      "symbol": "aave",
+      "emojiName": "coin_aave"
+    },
+    {
+      "name": "Ethereum Classic",
+      "symbol": "etc",
+      "emojiName": "coin_etc"
+    },
+    {
+      "name": "Quant",
+      "symbol": "qnt",
+      "emojiName": "coin_qnt"
+    },
+    {
+      "name": "Cosmos Hub",
+      "symbol": "atom",
+      "emojiName": "coin_atom"
+    },
+    {
+      "name": "United Stables",
+      "symbol": "u",
+      "emojiName": "coin_u"
+    },
+    {
+      "name": "KuCoin",
+      "symbol": "kcs",
+      "emojiName": "coin_kcs"
+    },
+    {
+      "name": "Invesco Short Duration US Government Securities Fund",
+      "symbol": "ustb",
+      "emojiName": "coin_ustb"
+    },
+    {
+      "name": "Blockchain Capital",
+      "symbol": "bcap",
+      "emojiName": "coin_bcap"
+    },
+    {
+      "name": "Spiko EU T-Bills Money Market Fund",
+      "symbol": "eutbl",
+      "emojiName": "coin_eutbl"
+    },
+    {
+      "name": "USDtb",
+      "symbol": "usdtb",
+      "emojiName": "coin_usdtb"
+    },
+    {
+      "name": "Render",
+      "symbol": "render",
+      "emojiName": "coin_render"
+    },
+    {
+      "name": "Algorand",
+      "symbol": "algo",
+      "emojiName": "coin_algo"
+    },
+    {
+      "name": "Kaspa",
+      "symbol": "kas",
+      "emojiName": "coin_kas"
+    },
+    {
+      "name": "Ethena",
+      "symbol": "ena",
+      "emojiName": "coin_ena"
+    },
+    {
+      "name": "Janus Henderson Anemoy Treasury Fund",
+      "symbol": "jtrsy",
+      "emojiName": "coin_jtrsy"
+    },
+    {
+      "name": "POL (ex-MATIC)",
+      "symbol": "pol",
+      "emojiName": "coin_pol"
+    },
+    {
+      "name": "NEXO",
+      "symbol": "nexo",
+      "emojiName": "coin_nexo"
+    },
+    {
+      "name": "​​Stable",
+      "symbol": "stable",
+      "emojiName": "coin_stable"
+    },
+    {
+      "name": "Venice Token",
+      "symbol": "vvv",
+      "emojiName": "coin_vvv"
+    },
+    {
+      "name": "Gate",
+      "symbol": "gt",
+      "emojiName": "coin_gt"
+    },
+    {
+      "name": "DeXe",
+      "symbol": "dexe",
+      "emojiName": "coin_dexe"
+    },
+    {
+      "name": "JUST",
+      "symbol": "jst",
+      "emojiName": "coin_jst"
+    },
+    {
+      "name": "Janus Henderson Anemoy AAA CLO Fund",
+      "symbol": "jaaa",
+      "emojiName": "coin_jaaa"
+    },
+    {
+      "name": "币安人生 (BinanceLife)",
+      "symbol": "币安人生",
+      "emojiName": "coin_"
+    },
+    {
+      "name": "Flare",
+      "symbol": "flr",
+      "emojiName": "coin_flr"
+    },
+    {
+      "name": "Jupiter",
+      "symbol": "jup",
+      "emojiName": "coin_jup"
+    },
+    {
+      "name": "Filecoin",
+      "symbol": "fil",
+      "emojiName": "coin_fil"
+    },
+    {
+      "name": "Beldex",
+      "symbol": "bdx",
+      "emojiName": "coin_bdx"
+    },
+    {
+      "name": "XDC Network",
+      "symbol": "xdc",
+      "emojiName": "coin_xdc"
+    },
+    {
+      "name": "GHO",
+      "symbol": "gho",
+      "emojiName": "coin_gho"
+    },
+    {
+      "name": "Aptos",
+      "symbol": "apt",
+      "emojiName": "coin_apt"
+    },
+    {
+      "name": "Arbitrum",
+      "symbol": "arb",
+      "emojiName": "coin_arb"
+    },
+    {
+      "name": "YLDS",
+      "symbol": "ylds",
+      "emojiName": "coin_ylds"
+    },
+    {
+      "name": "Usual USD",
+      "symbol": "usd0",
+      "emojiName": "coin_usd0"
+    },
+    {
+      "name": "Injective",
+      "symbol": "inj",
+      "emojiName": "coin_inj"
+    },
+    {
+      "name": "Spiko Amundi Overnight Swap Fund (EUR)",
+      "symbol": "eursafo",
+      "emojiName": "coin_eursafo"
+    },
+    {
+      "name": "Pump.fun",
+      "symbol": "pump",
+      "emojiName": "coin_pump"
+    },
+    {
+      "name": "Midnight",
+      "symbol": "night",
+      "emojiName": "coin_night"
+    },
+    {
+      "name": "A7A5",
+      "symbol": "a7a5",
+      "emojiName": "coin_a7a5"
+    },
+    {
+      "name": "USX",
+      "symbol": "usx",
+      "emojiName": "coin_usx"
+    },
+    {
+      "name": "Aerodrome Finance",
+      "symbol": "aero",
+      "emojiName": "coin_aero"
+    },
+    {
+      "name": "TrueUSD",
+      "symbol": "tusd",
+      "emojiName": "coin_tusd"
+    },
+    {
+      "name": "Audiera",
+      "symbol": "beat",
+      "emojiName": "coin_beat"
+    },
+    {
+      "name": "ADI",
+      "symbol": "adi",
+      "emojiName": "coin_adi"
+    },
+    {
+      "name": "Ondo Short-Term U.S. Government Bond Fund",
+      "symbol": "ousg",
+      "emojiName": "coin_ousg"
+    },
+    {
+      "name": "Dash",
+      "symbol": "dash",
+      "emojiName": "coin_dash"
+    },
+    {
+      "name": "Artificial Superintelligence Alliance",
+      "symbol": "fet",
+      "emojiName": "coin_fet"
+    },
+    {
+      "name": "Lighter",
+      "symbol": "lit",
+      "emojiName": "coin_lit"
+    },
+    {
+      "name": "Provenance Blockchain",
+      "symbol": "hash",
+      "emojiName": "coin_hash"
+    },
+    {
+      "name": "Official Trump",
+      "symbol": "trump",
+      "emojiName": "coin_trump"
+    },
+    {
+      "name": "Pudgy Penguins",
+      "symbol": "pengu",
+      "emojiName": "coin_pengu"
+    },
+    {
+      "name": "PancakeSwap",
+      "symbol": "cake",
+      "emojiName": "coin_cake"
+    },
+    {
+      "name": "VeChain",
+      "symbol": "vet",
+      "emojiName": "coin_vet"
+    },
+    {
+      "name": "EURC",
+      "symbol": "eurc",
+      "emojiName": "coin_eurc"
+    },
+    {
+      "name": "Kite",
+      "symbol": "kite",
+      "emojiName": "coin_kite"
+    },
+    {
+      "name": "Bonk",
+      "symbol": "bonk",
+      "emojiName": "coin_bonk"
+    },
+    {
+      "name": "SPX6900",
+      "symbol": "spx",
+      "emojiName": "coin_spx"
+    },
+    {
+      "name": "Virtuals Protocol",
+      "symbol": "virtual",
+      "emojiName": "coin_virtual"
+    },
+    {
+      "name": "Terra Luna Classic",
+      "symbol": "lunc",
+      "emojiName": "coin_lunc"
+    },
+    {
+      "name": "PRIME",
+      "symbol": "prime",
+      "emojiName": "coin_prime"
+    },
+    {
+      "name": "apxUSD",
+      "symbol": "apxusd",
+      "emojiName": "coin_apxusd"
+    },
+    {
+      "name": "Humanity",
+      "symbol": "h",
+      "emojiName": "coin_h"
+    },
+    {
+      "name": "Celestia",
+      "symbol": "tia",
+      "emojiName": "coin_tia"
+    },
+    {
+      "name": "Sei",
+      "symbol": "sei",
+      "emojiName": "coin_sei"
+    },
+    {
+      "name": "Curve DAO",
+      "symbol": "crv",
+      "emojiName": "coin_crv"
+    },
+    {
+      "name": "Stacks",
+      "symbol": "stx",
+      "emojiName": "coin_stx"
+    },
+    {
+      "name": "Jito",
+      "symbol": "jto",
+      "emojiName": "coin_jto"
+    },
+    {
+      "name": "First Digital USD",
+      "symbol": "fdusd",
+      "emojiName": "coin_fdusd"
+    },
+    {
+      "name": "Ether.fi",
+      "symbol": "ethfi",
+      "emojiName": "coin_ethfi"
+    },
+    {
+      "name": "The9bit",
+      "symbol": "9bit",
+      "emojiName": "coin_9bit"
+    },
+    {
+      "name": "SkyAI",
+      "symbol": "skyai",
+      "emojiName": "coin_skyai"
+    },
+    {
+      "name": "Kinesis Gold",
+      "symbol": "kau",
+      "emojiName": "coin_kau"
+    },
+    {
+      "name": "Sun Token",
+      "symbol": "sun",
+      "emojiName": "coin_sun"
+    },
+    {
+      "name": "Pyth Network",
+      "symbol": "pyth",
+      "emojiName": "coin_pyth"
+    },
+    {
+      "name": "Grass",
+      "symbol": "grass",
+      "emojiName": "coin_grass"
+    },
+    {
+      "name": "Plasma",
+      "symbol": "xpl",
+      "emojiName": "coin_xpl"
+    },
+    {
+      "name": "Unibase",
+      "symbol": "ub",
+      "emojiName": "coin_ub"
+    },
+    {
+      "name": "Gnosis",
+      "symbol": "gno",
+      "emojiName": "coin_gno"
+    },
+    {
+      "name": "Conflux",
+      "symbol": "cfx",
+      "emojiName": "coin_cfx"
+    },
+    {
+      "name": "LayerZero",
+      "symbol": "zro",
+      "emojiName": "coin_zro"
+    },
+    {
+      "name": "Tezos",
+      "symbol": "xtz",
+      "emojiName": "coin_xtz"
+    },
+    {
+      "name": "Kinesis Silver",
+      "symbol": "kag",
+      "emojiName": "coin_kag"
+    },
+    {
+      "name": "Monad",
+      "symbol": "mon",
+      "emojiName": "coin_mon"
+    },
+    {
+      "name": "AINFT",
+      "symbol": "nft",
+      "emojiName": "coin_nft"
+    },
+    {
+      "name": "DoubleZero",
+      "symbol": "2z",
+      "emojiName": "coin_2z"
+    },
+    {
+      "name": "BitTorrent",
+      "symbol": "btt",
+      "emojiName": "coin_btt"
+    },
+    {
+      "name": "Zebec Network",
+      "symbol": "zbcn",
+      "emojiName": "coin_zbcn"
+    },
+    {
+      "name": "Pendle",
+      "symbol": "pendle",
+      "emojiName": "coin_pendle"
+    },
+    {
+      "name": "Chiliz",
+      "symbol": "chz",
+      "emojiName": "coin_chz"
+    },
+    {
+      "name": "FLOKI",
+      "symbol": "floki",
+      "emojiName": "coin_floki"
+    },
+    {
+      "name": "JasmyCoin",
+      "symbol": "jasmy",
+      "emojiName": "coin_jasmy"
+    },
+    {
+      "name": "Bitcoin SV",
+      "symbol": "bsv",
+      "emojiName": "coin_bsv"
+    },
+    {
+      "name": "Royal Dollar",
+      "symbol": "rusd",
+      "emojiName": "coin_rusd"
+    },
+    {
+      "name": "Lido DAO",
+      "symbol": "ldo",
+      "emojiName": "coin_ldo"
+    },
+    {
+      "name": "Olympus",
+      "symbol": "ohm",
+      "emojiName": "coin_ohm"
+    },
+    {
+      "name": "ETHGas",
+      "symbol": "gwei",
+      "emojiName": "coin_gwei"
+    },
+    {
+      "name": "Legacy Frax Dollar",
+      "symbol": "frax",
+      "emojiName": "coin_frax"
+    },
+    {
+      "name": "Telcoin",
+      "symbol": "tel",
+      "emojiName": "coin_tel"
+    },
+    {
+      "name": "Akash Network",
+      "symbol": "akt",
+      "emojiName": "coin_akt"
+    },
+    {
+      "name": "Optimism",
+      "symbol": "op",
+      "emojiName": "coin_op"
+    },
+    {
+      "name": "Starknet",
+      "symbol": "strk",
+      "emojiName": "coin_strk"
+    },
+    {
+      "name": "BUILDon",
+      "symbol": "b",
+      "emojiName": "coin_b"
+    },
+    {
+      "name": "coco",
+      "symbol": "coco",
+      "emojiName": "coin_coco"
+    },
+    {
+      "name": "Ape and Pepe",
+      "symbol": "apepe",
+      "emojiName": "coin_apepe"
+    },
+    {
+      "name": "Kaia",
+      "symbol": "kaia",
+      "emojiName": "coin_kaia"
+    },
+    {
+      "name": "Falcon Finance",
+      "symbol": "ff",
+      "emojiName": "coin_ff"
+    },
+    {
+      "name": "Ethereum Name Service",
+      "symbol": "ens",
+      "emojiName": "coin_ens"
+    },
+    {
+      "name": "MegaUSD",
+      "symbol": "usdm",
+      "emojiName": "coin_usdm"
+    },
+    {
+      "name": "KOGE",
+      "symbol": "koge",
+      "emojiName": "coin_koge"
+    },
+    {
+      "name": "USDa",
+      "symbol": "usda",
+      "emojiName": "coin_usda"
+    },
+    {
+      "name": "IOTA",
+      "symbol": "iota",
+      "emojiName": "coin_iota"
+    },
+    {
+      "name": "The Graph",
+      "symbol": "grt",
+      "emojiName": "coin_grt"
+    },
+    {
+      "name": "Decred",
+      "symbol": "dcr",
+      "emojiName": "coin_dcr"
+    },
+    {
+      "name": "RealLink",
+      "symbol": "real",
+      "emojiName": "coin_real"
+    },
+    {
+      "name": "crvUSD",
+      "symbol": "crvusd",
+      "emojiName": "coin_crvusd"
+    },
+    {
+      "name": "Tradable NA Rent Financing Platform SSTN",
+      "symbol": "pc0000031",
+      "emojiName": "coin_pc0000031"
+    },
+    {
+      "name": "Pieverse",
+      "symbol": "pieverse",
+      "emojiName": "coin_pieverse"
+    },
+    {
+      "name": "USDai",
+      "symbol": "usdai",
+      "emojiName": "coin_usdai"
+    },
+    {
+      "name": "OnRe Tokenized Reinsurance",
+      "symbol": "onyc",
+      "emojiName": "coin_onyc"
+    },
+    {
+      "name": "USAT",
+      "symbol": "usat",
+      "emojiName": "coin_usat"
+    },
+    {
+      "name": "Ultima",
+      "symbol": "ultima",
+      "emojiName": "coin_ultima"
+    },
+    {
+      "name": "apyUSD",
+      "symbol": "apyusd",
+      "emojiName": "coin_apyusd"
+    },
+    {
+      "name": "Nexus",
+      "symbol": "nex",
+      "emojiName": "coin_nex"
+    },
+    {
+      "name": "BTSE Token",
+      "symbol": "btse",
+      "emojiName": "coin_btse"
+    },
+    {
+      "name": "Axie Infinity",
+      "symbol": "axs",
+      "emojiName": "coin_axs"
+    },
+    {
+      "name": "Maple Finance",
+      "symbol": "syrup",
+      "emojiName": "coin_syrup"
+    },
+    {
+      "name": "Compound",
+      "symbol": "comp",
+      "emojiName": "coin_comp"
+    },
+    {
+      "name": "WeFi",
+      "symbol": "wfi",
+      "emojiName": "coin_wfi"
+    }
+  ]
+}
