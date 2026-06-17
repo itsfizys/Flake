@@ -14,6 +14,7 @@ import {
         formatRawValue,
         formatBalance,
         formatUSD,
+        truncateAddress,
 } from '#utils';
 
 function formatAmount(raw, type, chainCfg) {
@@ -131,8 +132,16 @@ class TxCommand extends Command {
                         ? `<t:${tx.timestamp}:F>`
                         : 'Unknown';
 
-                const fromStr    = tx.from ? `\`${tx.from}\`` : '`Unknown`';
-                const toStr      = tx.to   ? `\`${tx.to}\``   : '`Unknown`';
+                const addrBase   = chainCfg.explorer ?? null;
+                const fmtAddr    = (addr) => {
+                        if (!addr) return '`Unknown`';
+                        const short = truncateAddress(addr, 10, 8);
+                        return addrBase
+                                ? `[\`${short}\`](${addrBase}${addr})`
+                                : `\`${short}\``;
+                };
+                const fromStr    = fmtAddr(tx.from);
+                const toStr      = fmtAddr(tx.to);
 
                 const sep = () =>
                         new SeparatorBuilder().setSpacing(SeparatorSpacingSize.Small).setDivider(true);
