@@ -280,7 +280,7 @@ class MyBalCommand extends Command {
 
         _errorContainer(title, description) {
                 return new ContainerBuilder()
-                        .setAccentColor(0xed4245)
+                        .setAccentColor(0xffffff)
                         .addTextDisplayComponents(new TextDisplayBuilder().setContent(`## ❌ ${title}`))
                         .addSeparatorComponents(
                                 new SeparatorBuilder().setSpacing(SeparatorSpacingSize.Small).setDivider(true),
