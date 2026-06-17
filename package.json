@@ -42,7 +42,8 @@
     "fs-extra": "^11.3.3",
     "mongoose": "^8.0.0",
     "prettier": "^3.8.1",
-    "qrcode": "^1.5.4"
+    "qrcode": "^1.5.4",
+    "sharp": "^0.34.5"
   },
   "engines": {
     "node": ">=18.0.0"

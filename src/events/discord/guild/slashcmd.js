@@ -14,6 +14,23 @@ import { CommandContext } from '#context';
 import { db } from '#dbManager';
 import { emoji } from '#emoji';
 import QRCode from 'qrcode';
+import sharp from 'sharp';
+import { fileURLToPath } from 'url';
+import path from 'path';
+
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
+const QR_FRAMES = [
+        {
+                path: path.resolve(__dirname, '../../../assets/qr_frame.jpg'),
+                box:  { left: 286, top: 79, right: 649, bottom: 434 },
+                pad:  12,
+        },
+        {
+                path: path.resolve(__dirname, '../../../assets/qr_frame2.jpg'),
+                box:  { left: 135, top: 183, right: 602, bottom: 593 },
+                pad:  18,
+        },
+];
 
 const errorContainer = new ContainerBuilder();
 const errorTitle = new TextDisplayBuilder();
@@ -261,14 +278,28 @@ const handleQrButton = async (interaction) => {
 
                 const address = interaction.customId.slice('addy_qr:'.length);
 
-                const buffer = await QRCode.toBuffer(address, {
+                const frame = QR_FRAMES[Math.floor(Math.random() * QR_FRAMES.length)];
+
+                const boxW = frame.box.right - frame.box.left;
+                const boxH = frame.box.bottom - frame.box.top;
+                const qrSize = Math.min(boxW, boxH) - frame.pad * 2;
+
+                const qrBuf = await QRCode.toBuffer(address, {
                         type: 'png',
-                        width: 300,
-                        margin: 2,
+                        width: qrSize,
+                        margin: 1,
                         color: { dark: '#000000', light: '#00000000' },
                 });
 
-                const attachment = new AttachmentBuilder(buffer, { name: 'qr.png' });
+                const offsetX = frame.box.left + Math.floor((boxW - qrSize) / 2);
+                const offsetY = frame.box.top  + Math.floor((boxH - qrSize) / 2);
+
+                const compositeBuf = await sharp(frame.path)
+                        .composite([{ input: qrBuf, top: offsetY, left: offsetX }])
+                        .png()
+                        .toBuffer();
+
+                const attachment = new AttachmentBuilder(compositeBuf, { name: 'qr.png' });
 
                 await interaction.editReply({ files: [attachment] });
 
