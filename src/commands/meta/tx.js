@@ -57,9 +57,9 @@ function formatFee(raw, type, chainCfg) {
 }
 
 function statusLabel(status) {
-        if (status === 'Confirmed') return '`✅ Confirmed`';
-        if (status === 'Failed')    return '`❌ Failed`';
-        return '`⏳ Pending`';
+        if (status === 'Confirmed') return '`Confirmed`';
+        if (status === 'Failed')    return '`Failed`';
+        return '`Pending`';
 }
 
 class TxCommand extends Command {
