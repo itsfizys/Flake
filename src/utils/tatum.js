@@ -185,16 +185,18 @@ async function _evmTransaction(network, hash) {
 
 async function _utxoTransaction(network, hash) {
         const tx = await fetchTatum(`/${network}/transaction/${hash}`);
-        const from = tx.inputs?.[0]?.coin?.address ?? null;
-        const to   = tx.outputs?.[0]?.address ?? null;
-        const totalOut = (tx.outputs || []).reduce((s, o) => s + parseFloat(o.value || 0), 0);
-        const status   = tx.blockNumber != null ? 'Confirmed' : 'Pending';
+        const from    = tx.inputs?.[0]?.coin?.address ?? null;
+        const to      = tx.outputs?.[0]?.address ?? null;
+        const totalOut = (tx.outputs || []).reduce((s, o) => s + (o.value || 0), 0);
+        const totalIn  = (tx.inputs  || []).reduce((s, i) => s + (i.coin?.value || 0), 0);
+        const feeSats  = totalIn - totalOut;
+        const status   = (tx.block || tx.blockNumber != null) ? 'Confirmed' : 'Pending';
         return {
                 hash:      tx.hash || hash,
                 from,
                 to,
-                amount:    totalOut.toString(),
-                fee:       tx.fee ?? null,
+                amount:    (totalOut / 1e8).toString(),
+                fee:       feeSats > 0 ? (feeSats / 1e8).toString() : null,
                 status,
                 timestamp: tx.time ?? null,
                 type:      'utxo',
