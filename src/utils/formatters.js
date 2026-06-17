@@ -95,17 +95,10 @@ export function formatUSD(value) {
 export function utxoTxDirection(tx, address) {
         const addr = address.toLowerCase();
         const fromSelf = (tx.inputs ?? []).some(i => i.coin?.address?.toLowerCase() === addr);
-        const toSelf   = (tx.outputs ?? []).some(o => o.address?.toLowerCase() === addr);
-
-        if (fromSelf && toSelf) return 'self';
         if (fromSelf) return 'out';
-        if (!toSelf) return 'out';
-
-        // No input coin data — use output ratio as heuristic
-        const toSelfAmt   = (tx.outputs ?? []).filter(o => o.address?.toLowerCase() === addr).reduce((s, o) => s + parseFloat(o.value ?? 0), 0);
-        const toOthersAmt = (tx.outputs ?? []).filter(o => o.address?.toLowerCase() !== addr).reduce((s, o) => s + parseFloat(o.value ?? 0), 0);
-        if (toOthersAmt > toSelfAmt) return 'out';
-        return 'in';
+        const toSelf = (tx.outputs ?? []).some(o => o.address?.toLowerCase() === addr);
+        if (toSelf) return 'in';
+        return 'out';
 }
 
 /**
