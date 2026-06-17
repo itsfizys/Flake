@@ -177,7 +177,7 @@ class BalCommand extends Command {
                         container.addSectionComponents(
                                 new SectionBuilder()
                                         .addTextDisplayComponents(new TextDisplayBuilder().setContent(headerText))
-                                        .setAccessory(new ThumbnailBuilder().setURL(imageUrl)),
+                                        .setThumbnailAccessory(new ThumbnailBuilder().setURL(imageUrl)),
                         );
                 } else {
                         container.addTextDisplayComponents(new TextDisplayBuilder().setContent(headerText));
