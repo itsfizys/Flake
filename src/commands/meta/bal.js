@@ -139,7 +139,7 @@ class BalCommand extends Command {
 
                 const [balSettled, txSettled, priceSettled] = await Promise.allSettled([
                         getBalance(chainCfg, address),
-                        getTransactions(chainCfg, address, 5),
+                        getTransactions(chainCfg, address, 50),
                         getPrice(chainCfg.key),
                 ]);
 
@@ -154,7 +154,9 @@ class BalCommand extends Command {
                 }
 
                 const balData  = balSettled.value;
-                const txs      = txSettled.status === 'fulfilled' ? (txSettled.value || []) : [];
+                const allTxs   = txSettled.status === 'fulfilled' ? (txSettled.value || []) : [];
+                const txs      = allTxs.slice(0, 5);
+                const txCount  = allTxs.length === 50 ? '50+' : allTxs.length.toString();
                 const { price = 0, change24h = 0 } = priceSettled.status === 'fulfilled' ? priceSettled.value : {};
 
                 const balanceNum  = parseFloat(balData.balance  || 0);
@@ -190,7 +192,7 @@ class BalCommand extends Command {
                 container.addTextDisplayComponents(
                         new TextDisplayBuilder().setContent(
                                 `Balance : **${balanceUSD}**     Unconfirmed : **${pendingUSD}**     Received : **${receivedUSD}**\n` +
-                                `Price : **${priceStr}**     24h : **${changeArrow} ${change24Abs}%**     Txs : **${txs.length}**`,
+                                `Price : **${priceStr}**     24h : **${changeArrow} ${change24Abs}%**     Txs : **${txCount}**`,
                         ),
                 );
 
