@@ -265,7 +265,7 @@ const handleQrButton = async (interaction) => {
                         type: 'png',
                         width: 300,
                         margin: 2,
-                        color: { dark: '#000000', light: '#ffffff' },
+                        color: { dark: '#000000', light: '#00000000' },
                 });
 
                 const attachment = new AttachmentBuilder(buffer, { name: 'qr.png' });
