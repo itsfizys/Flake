@@ -208,7 +208,17 @@ class BalCommand extends Command {
                                         ? `${chainCfg.txExplorer}${tx.hash}`
                                         : `${chainCfg.explorer}${address}`;
                                 const usdStr = formatUSD(getTxValueUSD(tx, address, chainCfg, price));
-                                return `${emoji.minus}  [\`${displayAddr}\`](${txUrl})  :  **${usdStr}**`;
+
+                                let dirEmoji = emoji.minus;
+                                if (tx.type === 'utxo') {
+                                        const dir = utxoTxDirection(tx, address);
+                                        dirEmoji = dir === 'in' ? emoji.plus : emoji.minus;
+                                } else if (tx.type === 'evm' || tx.type === 'xrp' || tx.type === 'tron') {
+                                        const isIncoming = (tx.to || '').toLowerCase() === address.toLowerCase();
+                                        dirEmoji = isIncoming ? emoji.plus : emoji.minus;
+                                }
+
+                                return `${dirEmoji}  [\`${displayAddr}\`](${txUrl})  :  **${usdStr}**`;
                         }).join('\n');
 
                         container.addTextDisplayComponents(

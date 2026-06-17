@@ -7,8 +7,9 @@ export const emoji = {
         settings:  '⚙️',
         warn:      '⚠️',
 
-        arrowup:   '<:arrowup:1516872751556722789>',
+        arrowup:   '<:arrowup:1516882251026010234>',
         arrowdown: '<:arrowdown:1516872424371650591>',
+        plus:      '<:plus:1516882253039403320>',
         minus:     '<:minus:1516872427483959327>',
 
         get(name, fallback = '') {
