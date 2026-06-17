@@ -15,18 +15,18 @@ import { db } from '#dbManager';
 import { emoji } from '#emoji';
 import QRCode from 'qrcode';
 import sharp from 'sharp';
-import { fileURLToPath } from 'url';
 import path from 'path';
 
-const __dirname = path.dirname(fileURLToPath(import.meta.url));
+const asset = (file) => path.join(process.cwd(), 'src', 'assets', file);
+
 const QR_FRAMES = [
         {
-                path: path.resolve(__dirname, '../../../assets/qr_frame.jpg'),
+                path: asset('qr_frame.jpg'),
                 box:  { left: 286, top: 79, right: 649, bottom: 434 },
                 pad:  12,
         },
         {
-                path: path.resolve(__dirname, '../../../assets/qr_frame2.jpg'),
+                path: asset('qr_frame2.jpg'),
                 box:  { left: 135, top: 183, right: 602, bottom: 593 },
                 pad:  18,
         },
