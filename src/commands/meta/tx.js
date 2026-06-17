@@ -14,7 +14,6 @@ import {
         formatRawValue,
         formatBalance,
         formatUSD,
-        truncateAddress,
 } from '#utils';
 
 function formatAmount(raw, type, chainCfg) {
@@ -124,17 +123,16 @@ class TxCommand extends Command {
                 const amountUSD  = price && !isNaN(amountNum) ? `  **${formatUSD(amountNum * price)}**` : '';
 
                 const txUrl      = chainCfg.txExplorer ? `${chainCfg.txExplorer}${tx.hash}` : null;
-                const hashShort  = truncateAddress(tx.hash, 10, 8);
                 const hashLine   = txUrl
-                        ? `[\`${hashShort}\`](${txUrl})`
-                        : `\`${hashShort}\``;
+                        ? `[\`${tx.hash}\`](${txUrl})`
+                        : `\`${tx.hash}\``;
 
                 const timeStr    = tx.timestamp
                         ? `<t:${tx.timestamp}:F>`
                         : 'Unknown';
 
-                const fromStr    = tx.from ? `\`${truncateAddress(tx.from, 10, 8)}\`` : '`Unknown`';
-                const toStr      = tx.to   ? `\`${truncateAddress(tx.to,   10, 8)}\`` : '`Unknown`';
+                const fromStr    = tx.from ? `\`${tx.from}\`` : '`Unknown`';
+                const toStr      = tx.to   ? `\`${tx.to}\``   : '`Unknown`';
 
                 const sep = () =>
                         new SeparatorBuilder().setSpacing(SeparatorSpacingSize.Small).setDivider(true);
