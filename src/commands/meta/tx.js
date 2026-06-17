@@ -15,20 +15,7 @@ import {
         formatBalance,
         formatUSD,
         truncateAddress,
-        CHAINS,
 } from '#utils';
-
-const FEATURED = ['btc', 'eth', 'ltc', 'sol', 'trx', 'xrp'];
-
-const ALL_CHOICES = Object.entries(CHAINS).map(([key, chain]) => ({
-        name: `${chain.name} (${chain.symbol})`,
-        value: key,
-}));
-
-const FEATURED_CHOICES = FEATURED.map(key => ({
-        name: `${CHAINS[key].name} (${CHAINS[key].symbol})`,
-        value: key,
-}));
 
 function formatAmount(raw, type, chainCfg) {
         if (raw == null || raw === '0') return `0 ${chainCfg.symbol}`;
@@ -56,6 +43,14 @@ function formatFee(raw, type, chainCfg) {
         return `${formatBalance(decimal, 8)} ${chainCfg.symbol}`;
 }
 
+function detectChainFromHash(hash) {
+        if (/^0x[0-9a-fA-F]{64}$/.test(hash))         return 'eth';
+        if (/^[1-9A-HJ-NP-Za-km-z]{80,}$/.test(hash)) return 'sol';
+        if (/^[A-F0-9]{64}$/.test(hash))               return 'xrp';
+        if (/^[0-9a-f]{64}$/.test(hash))               return 'btc';
+        return null;
+}
+
 function statusLabel(status) {
         if (status === 'Confirmed') return '`Confirmed`';
         if (status === 'Failed')    return '`Failed`';
@@ -79,40 +74,23 @@ class TxCommand extends Command {
                                                 description: 'Transaction hash',
                                                 required: true,
                                         },
-                                        {
-                                                type: ApplicationCommandOptionType.String,
-                                                name: 'chain',
-                                                description: 'Chain the transaction is on',
-                                                required: true,
-                                                autocomplete: true,
-                                        },
                                 ],
                         },
                 });
         }
 
-        async autocomplete({ interaction }) {
-                const focused = interaction.options.getFocused().toLowerCase().trim();
-                const matches = focused
-                        ? ALL_CHOICES.filter(c =>
-                                c.name.toLowerCase().includes(focused) ||
-                                c.value.toLowerCase().includes(focused),
-                          ).slice(0, 25)
-                        : FEATURED_CHOICES;
-                await interaction.respond(matches);
-        }
-
         async execute({ ctx }) {
-                const hash       = ctx.options.getString('hash').trim();
-                const chainInput = ctx.options.getString('chain');
-                const chainCfg   = resolveChain(chainInput);
+                const hash     = ctx.options.getString('hash').trim();
+                const detected = detectChainFromHash(hash);
 
-                if (!chainCfg) {
+                if (!detected) {
                         return ctx.reply({
-                                components: [this._msgContainer(`**\`${chainInput}\` is not a recognised chain.**`)],
+                                components: [this._msgContainer(`**Could not identify the chain from that hash.**`)],
                                 flags: MessageFlags.IsComponentsV2,
                         });
                 }
+
+                const chainCfg = resolveChain(detected);
 
                 if (!chainCfg.tatumNetwork) {
                         return ctx.reply({
