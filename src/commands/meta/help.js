@@ -104,7 +104,7 @@ class HelpCommand extends Command {
                 );
 
                 container.addTextDisplayComponents(
-                        new TextDisplayBuilder().setContent(`-# Supports **150+** coins`),
+                        new TextDisplayBuilder().setContent(`-# Supports **175** coins`),
                 );
 
                 return ctx.reply({
