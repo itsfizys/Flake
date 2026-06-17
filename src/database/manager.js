@@ -1,12 +1,14 @@
 import { initDatabase, closeDatabase } from '#db/mongo';
 import { GuildService } from '#dbServices/guilds';
 import { BlacklistService } from '#dbServices/blacklist';
+import { UserService } from '#dbServices/users';
 import { logger } from '#utils';
 
 export class DatabaseManager {
         constructor() {
                 this.guild = null;
                 this.blacklist = null;
+                this.user = null;
                 this.initialized = false;
         }
 
@@ -22,6 +24,7 @@ export class DatabaseManager {
 
                         this.guild = new GuildService();
                         this.blacklist = new BlacklistService();
+                        this.user = new UserService();
 
                         this.initialized = true;
                         logger.success('DatabaseManager', 'Databases initialized successfully');
