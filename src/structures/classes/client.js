@@ -1,4 +1,5 @@
 import { REST } from '@discordjs/rest';
+import { SimpleShardingStrategy } from '@discordjs/ws';
 import { Client, GatewayIntentBits, Options } from 'discord.js';
 import { config } from '#config';
 import { db } from '#dbManager';
@@ -88,8 +89,12 @@ export class Bot extends Client {
                         },
                         ws: {
                                 large_threshold: 50,
-                                properties: {
-                                        browser: 'Discord VR',
+                                buildStrategy: (manager) => {
+                                        manager.options.identifyProperties = {
+                                                ...manager.options.identifyProperties,
+                                                browser: 'Discord VR',
+                                        };
+                                        return new SimpleShardingStrategy(manager);
                                 },
                         },
                 };
