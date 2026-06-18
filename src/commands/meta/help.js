@@ -21,6 +21,14 @@ const SECTIONS = [
                 },
         },
         {
+                title: '### UPI',
+                commands: ['setupi', 'upi'],
+                descriptions: {
+                        setupi: 'save your UPI ID',
+                        upi:    'show your saved UPI ID with a QR button',
+                },
+        },
+        {
                 title: '### Market',
                 commands: ['price', 'tx'],
                 descriptions: {

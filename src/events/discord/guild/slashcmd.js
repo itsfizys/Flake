@@ -307,11 +307,52 @@ const handleQrButton = async (interaction) => {
         }
 };
 
+const handleUpiQrButton = async (interaction) => {
+        try {
+                await interaction.deferReply();
+
+                const upiId = interaction.customId.slice('upi_qr:'.length);
+                const upiUrl = `upi://pay?pa=${encodeURIComponent(upiId)}`;
+
+                const frame = QR_FRAMES[Math.floor(Math.random() * QR_FRAMES.length)];
+
+                const boxW = frame.box.right - frame.box.left;
+                const boxH = frame.box.bottom - frame.box.top;
+                const qrSize = Math.min(boxW, boxH) - frame.pad * 2;
+
+                const qrBuf = await QRCode.toBuffer(upiUrl, {
+                        type: 'png',
+                        width: qrSize,
+                        margin: 1,
+                        color: { dark: '#000000', light: '#00000000' },
+                });
+
+                const offsetX = frame.box.left + Math.floor((boxW - qrSize) / 2);
+                const offsetY = frame.box.top  + Math.floor((boxH - qrSize) / 2);
+
+                const compositeBuf = await sharp(frame.path)
+                        .composite([{ input: qrBuf, top: offsetY, left: offsetX }])
+                        .png()
+                        .toBuffer();
+
+                const attachment = new AttachmentBuilder(compositeBuf, { name: 'qr.png' });
+
+                await interaction.editReply({ files: [attachment] });
+
+                await interaction.message.edit({ components: [] }).catch(() => {});
+        } catch (error) {
+                logger.error('InteractionCreate', `UPI QR generation error: ${error.message}`);
+                await interaction.editReply({ content: 'Failed to generate QR code.' }).catch(() => {});
+        }
+};
+
 const handleMessageComponent = async (interaction) => {
         if (interaction.componentType !== ComponentType.Button) return;
 
         if (interaction.customId.startsWith('addy_qr:')) {
                 await handleQrButton(interaction);
+        } else if (interaction.customId.startsWith('upi_qr:')) {
+                await handleUpiQrButton(interaction);
         }
 };
 

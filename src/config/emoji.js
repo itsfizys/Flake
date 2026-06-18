@@ -7,6 +7,8 @@ export const emoji = {
         settings:  '⚙️',
         warn:      '⚠️',
 
+        upi:       '<:upi:1517045037551321098>',
+
         arrowup:   '<:arrowup:1516882251026010234>',
         arrowdown: '<:arrowdown:1516872424371650591>',
         plus:      '<:plus:1516882253039403320>',
