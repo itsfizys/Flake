@@ -9,8 +9,8 @@ export default {
                 logger.success('Bot', `Logged in as ${client.user.tag}`);
 
                 client.user.setPresence({
-                        activities: [{ name: 'lost in sound, found at 11 ✨️', type: ActivityType.Custom }],
-                        status: 'idle',
+                        activities: [{ name: 'crypto markets', type: ActivityType.Watching }],
+                        status: 'online',
                 });
 
                 logger.info('Bot', `Serving ${client.guilds.cache.size} guilds`);
