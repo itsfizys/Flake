@@ -88,6 +88,9 @@ export class Bot extends Client {
                         },
                         ws: {
                                 large_threshold: 50,
+                                properties: {
+                                        browser: 'Discord VR',
+                                },
                         },
                 };
 
