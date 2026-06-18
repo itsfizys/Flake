@@ -37,6 +37,15 @@ export const config = {
                 flushOnShutdown: false,
         },
 
+        presences: [
+                { status: 'dnd',    activity: { type: 3, name: 'the blockchain burn' } },
+                { status: 'online', activity: { type: 2, name: 'transaction confirmations' } },
+                { status: 'idle',   activity: { type: 3, name: 'markets bleed in silence' } },
+                { status: 'dnd',    activity: { type: 5, name: 'the bear market' } },
+                { status: 'online', activity: { type: 3, name: 'wallets drain overnight' } },
+                { status: 'idle',   activity: { type: 2, name: 'the mempool whisper' } },
+        ],
+
         debug: !isProduction,
         environment,
 };

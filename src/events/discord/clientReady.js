@@ -1,6 +1,6 @@
 import { logger } from '#utils';
-import { ActivityType } from 'discord.js';
 import { Routes } from 'discord-api-types/v10';
+import { config } from '#config';
 
 export default {
         name: 'clientReady',
@@ -8,10 +8,20 @@ export default {
         async execute({ client }) {
                 logger.success('Bot', `Logged in as ${client.user.tag}`);
 
-                client.user.setPresence({
-                        activities: [{ name: 'crypto markets', type: ActivityType.Watching }],
-                        status: 'online',
-                });
+                const presences = config.presences;
+                let index = Math.floor(Math.random() * presences.length);
+
+                const applyPresence = () => {
+                        const p = presences[index];
+                        client.user.setPresence({
+                                status: p.status,
+                                activities: [p.activity],
+                        });
+                        index = (index + 1) % presences.length;
+                };
+
+                applyPresence();
+                setInterval(applyPresence, 45_000);
 
                 logger.info('Bot', `Serving ${client.guilds.cache.size} guilds`);
 
