@@ -271,7 +271,7 @@ const handleAutocomplete = async (interaction, client) => {
 
 const handleQrButton = async (interaction) => {
         try {
-                await interaction.deferReply();
+                await interaction.deferUpdate();
 
                 const address = interaction.customId.slice('addy_qr:'.length);
 
@@ -298,18 +298,17 @@ const handleQrButton = async (interaction) => {
 
                 const attachment = new AttachmentBuilder(compositeBuf, { name: 'qr.png' });
 
-                await interaction.editReply({ files: [attachment] });
-
-                await interaction.message.edit({ components: [] }).catch(() => {});
+                await interaction.editReply({ components: [] });
+                await interaction.followUp({ files: [attachment] });
         } catch (error) {
                 logger.error('InteractionCreate', `QR generation error: ${error.message}`);
-                await interaction.editReply({ content: 'Failed to generate QR code.' }).catch(() => {});
+                await interaction.followUp({ content: 'Failed to generate QR code.' }).catch(() => {});
         }
 };
 
 const handleUpiQrButton = async (interaction) => {
         try {
-                await interaction.deferReply();
+                await interaction.deferUpdate();
 
                 const upiId = interaction.customId.slice('upi_qr:'.length);
                 const upiUrl = `upi://pay?pa=${encodeURIComponent(upiId)}`;
@@ -337,12 +336,11 @@ const handleUpiQrButton = async (interaction) => {
 
                 const attachment = new AttachmentBuilder(compositeBuf, { name: 'qr.png' });
 
-                await interaction.editReply({ files: [attachment] });
-
-                await interaction.message.edit({ components: [] }).catch(() => {});
+                await interaction.editReply({ components: [] });
+                await interaction.followUp({ files: [attachment] });
         } catch (error) {
                 logger.error('InteractionCreate', `UPI QR generation error: ${error.message}`);
-                await interaction.editReply({ content: 'Failed to generate QR code.' }).catch(() => {});
+                await interaction.followUp({ content: 'Failed to generate QR code.' }).catch(() => {});
         }
 };
 
