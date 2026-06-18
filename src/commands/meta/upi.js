@@ -38,14 +38,6 @@ class UpiCommand extends Command {
                 const customId = `upi_qr:${upiId}`;
                 const showButton = customId.length <= 100;
 
-                const container = new ContainerBuilder()
-                        .setAccentColor(0xffffff)
-                        .addTextDisplayComponents(
-                                new TextDisplayBuilder().setContent(
-                                        `## ${emoji.upi}  UPI\n\`${upiId}\``,
-                                ),
-                        );
-
                 const components = showButton
                         ? [
                                 new ActionRowBuilder().addComponents(
@@ -58,8 +50,8 @@ class UpiCommand extends Command {
                         : [];
 
                 return ctx.reply({
-                        components: [container, ...components],
-                        flags: MessageFlags.IsComponentsV2,
+                        content: `\`${upiId}\``,
+                        components,
                 });
         }
 
