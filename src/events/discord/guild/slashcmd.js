@@ -52,7 +52,9 @@ const sendError = async (interaction, title, description, forceEphemeral = false
                 .addTextDisplayComponents(errorDescription);
 
         try {
-                const canSend = interaction.channel ? canBotSendMessages(interaction.channel) : false;
+                const canSend = interaction.channel && interaction.inGuild()
+                        ? canBotSendMessages(interaction.channel)
+                        : true;
                 const flags =
                         !canSend || forceEphemeral
                                 ? MessageFlags.IsComponentsV2 | MessageFlags.Ephemeral
@@ -125,16 +127,7 @@ const handleChatInputCommand = async (interaction, client) => {
         if (!interaction || !client) return;
 
         try {
-                if (!interaction.inGuild()) {
-                        return sendError(
-                                interaction,
-                                'Server Only',
-                                'Commands can only be used in a server.',
-                                true,
-                        );
-                }
-
-                if (!interaction.guild || !interaction.user || !interaction.channel) {
+                if (!interaction.user) {
                         return sendError(
                                 interaction,
                                 'Invalid Context',
@@ -143,7 +136,12 @@ const handleChatInputCommand = async (interaction, client) => {
                         );
                 }
 
-                if (!canBotSendMessages(interaction.channel)) {
+                const inGuild   = interaction.inGuild();
+                const userId    = interaction.user.id;
+                const guildId   = interaction.guild?.id ?? null;
+                const channelId = interaction.channel?.id ?? null;
+
+                if (inGuild && interaction.channel && !canBotSendMessages(interaction.channel)) {
                         return sendError(
                                 interaction,
                                 'Missing Bot Permissions',
@@ -152,20 +150,18 @@ const handleChatInputCommand = async (interaction, client) => {
                         );
                 }
 
-                const userId = interaction.user.id;
-                const guildId = interaction.guild.id;
-                const channelId = interaction.channel.id;
-
-                let isUserBlacklisted = false;
+                let isUserBlacklisted  = false;
                 let isGuildBlacklisted = false;
-                let isChannelIgnored = false;
+                let isChannelIgnored   = false;
 
                 try {
-                        [isUserBlacklisted, isGuildBlacklisted, isChannelIgnored] = await Promise.all([
-                                db.blacklist?.checkBlacklist(userId).catch(() => false),
-                                db.blacklist?.checkBlacklist(guildId).catch(() => false),
-                                db.guild?.isChannelIgnored(guildId, channelId).catch(() => false),
-                        ]);
+                        isUserBlacklisted = await db.blacklist?.checkBlacklist(userId).catch(() => false) ?? false;
+                        if (inGuild && guildId) {
+                                [isGuildBlacklisted, isChannelIgnored] = await Promise.all([
+                                        db.blacklist?.checkBlacklist(guildId).catch(() => false),
+                                        db.guild?.isChannelIgnored(guildId, channelId).catch(() => false),
+                                ]);
+                        }
                 } catch (error) {
                         logger.error('InteractionCreate', `Database check failed: ${error.message}`);
                 }
@@ -202,17 +198,18 @@ const handleChatInputCommand = async (interaction, client) => {
                         );
                 }
 
+                const cooldownScope = guildId ?? userId;
                 if (commandToExecute.cooldown && client.commandHandler) {
                         try {
                                 const cooldown = await client.commandHandler.isOnCooldown(
                                         commandToExecute,
                                         userId,
-                                        guildId,
+                                        cooldownScope,
                                 );
                                 if (cooldown) {
                                         return await sendCooldown(interaction, cooldown);
                                 }
-                                await client.commandHandler.setCooldown(commandToExecute, userId, guildId);
+                                await client.commandHandler.setCooldown(commandToExecute, userId, cooldownScope);
                         } catch (error) {
                                 logger.error('InteractionCreate', `Cooldown check failed: ${error.message}`);
                         }
