@@ -28,13 +28,6 @@ const SECTIONS = [
                         tx:    'transaction lookup, chain auto detected',
                 },
         },
-        {
-                title: '### Alerts',
-                commands: ['alert'],
-                descriptions: {
-                        alert: 'toggle DM alerts on confirmed incoming transactions',
-                },
-        },
 ];
 
 class HelpCommand extends Command {
